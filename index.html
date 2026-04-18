@@ -1,0 +1,1603 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Summer 2026 Itinerary</title>
+    <style>
+      :root {
+        --paper: #f5efe1;
+        --paper-strong: #fffaf0;
+        --ink: #1f1a17;
+        --muted: #64584d;
+        --line: rgba(31, 26, 23, 0.12);
+        --sun: #f2a65a;
+        --sea: #2b7a78;
+        --sea-deep: #174f57;
+        --clay: #b85c38;
+        --sage: #758e67;
+        --night: #13222f;
+        --ok-bg: rgba(43, 122, 120, 0.12);
+        --ok-ink: #174f57;
+        --warn-bg: rgba(184, 92, 56, 0.12);
+        --warn-ink: #7b351d;
+        --soft-shadow: 0 18px 40px rgba(24, 30, 33, 0.12);
+        --card-shadow: 0 14px 28px rgba(24, 30, 33, 0.08);
+        --radius-xl: 28px;
+        --radius-lg: 20px;
+        --radius-md: 14px;
+        --max-width: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(242, 166, 90, 0.3),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(43, 122, 120, 0.18),
+            transparent 32%
+          ),
+          linear-gradient(180deg, #f9f2e7 0%, #efe7d8 52%, #f7f3ea 100%);
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .shell {
+        width: min(calc(100% - 32px), var(--max-width));
+        margin: 0 auto;
+        padding: 24px 0 64px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 30px;
+        border-radius: var(--radius-xl);
+        background:
+          linear-gradient(
+            135deg,
+            rgba(19, 34, 47, 0.96),
+            rgba(23, 79, 87, 0.94)
+          ),
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0)
+          );
+        color: #fff8ef;
+        box-shadow: var(--soft-shadow);
+        isolation: isolate;
+      }
+
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(10px);
+        opacity: 0.75;
+        z-index: -1;
+      }
+
+      .hero::before {
+        width: 240px;
+        height: 240px;
+        background: rgba(242, 166, 90, 0.35);
+        right: -50px;
+        top: -70px;
+      }
+
+      .hero::after {
+        width: 320px;
+        height: 320px;
+        background: rgba(117, 142, 103, 0.22);
+        left: -80px;
+        bottom: -160px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 248, 239, 0.12);
+        color: rgba(255, 248, 239, 0.86);
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-weight: 700;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 22px;
+        grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.95fr);
+        align-items: end;
+      }
+
+      .hero h1 {
+        margin: 0 0 14px;
+        font-family:
+          "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+        font-size: clamp(2.5rem, 7vw, 4.75rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        max-width: 8ch;
+      }
+
+      .hero-copy {
+        margin: 0;
+        max-width: 58ch;
+        color: rgba(255, 248, 239, 0.86);
+        font-size: 1.02rem;
+        line-height: 1.6;
+      }
+
+      .hero-panel {
+        padding: 20px;
+        border-radius: 24px;
+        background: rgba(255, 248, 239, 0.1);
+        border: 1px solid rgba(255, 248, 239, 0.14);
+        backdrop-filter: blur(8px);
+      }
+
+      .hero-panel h2 {
+        margin: 0 0 12px;
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+      }
+
+      .hero-panel p {
+        margin: 0;
+        color: rgba(255, 248, 239, 0.8);
+        line-height: 1.6;
+      }
+
+      .hero-panel strong {
+        color: #fff8ef;
+      }
+
+      .route-ribbon {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .route-stop {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 248, 239, 0.1);
+        border: 1px solid rgba(255, 248, 239, 0.16);
+        font-size: 0.9rem;
+        color: rgba(255, 248, 239, 0.92);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 12px;
+        z-index: 10;
+        margin: 18px 0 26px;
+        padding: 12px;
+        border-radius: 18px;
+        background: rgba(255, 250, 240, 0.82);
+        border: 1px solid rgba(31, 26, 23, 0.08);
+        box-shadow: 0 10px 24px rgba(31, 26, 23, 0.08);
+        backdrop-filter: blur(12px);
+      }
+
+      .topbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .topbar a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: var(--night);
+        background: rgba(19, 34, 47, 0.05);
+        transition:
+          transform 0.16s ease,
+          background 0.16s ease;
+      }
+
+      .topbar a:hover,
+      .topbar a:focus-visible {
+        transform: translateY(-1px);
+        background: rgba(19, 34, 47, 0.12);
+        outline: none;
+      }
+
+      .stats {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 30px;
+      }
+
+      .stat-card,
+      .section-card {
+        background: var(--paper-strong);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--card-shadow);
+      }
+
+      .stat-card {
+        padding: 18px;
+        min-height: 146px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        inset: auto -24px -34px auto;
+        width: 110px;
+        height: 110px;
+        border-radius: 999px;
+        background: linear-gradient(
+          135deg,
+          rgba(242, 166, 90, 0.2),
+          rgba(43, 122, 120, 0.08)
+        );
+      }
+
+      .stat-label {
+        position: relative;
+        z-index: 1;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .stat-value {
+        position: relative;
+        z-index: 1;
+        font-family:
+          "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+        margin-bottom: 10px;
+        color: var(--night);
+      }
+
+      .stat-note {
+        position: relative;
+        z-index: 1;
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 0.95rem;
+      }
+
+      .section-heading {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: end;
+        margin: 0 0 18px;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-family:
+          "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: var(--night);
+      }
+
+      .section-heading p {
+        margin: 0;
+        max-width: 46ch;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .section-card {
+        padding: 22px;
+        margin-bottom: 26px;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 172px minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+        padding: 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(31, 26, 23, 0.08);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 250, 240, 0.98),
+          rgba(250, 245, 236, 0.92)
+        );
+      }
+
+      .timeline-date {
+        position: sticky;
+        top: 96px;
+        align-self: start;
+      }
+
+      .date-chip {
+        display: inline-block;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(19, 34, 47, 0.96),
+          rgba(23, 79, 87, 0.88)
+        );
+        color: #fff8ef;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        box-shadow: 0 12px 24px rgba(19, 34, 47, 0.18);
+      }
+
+      .timeline-main {
+        display: grid;
+        gap: 12px;
+      }
+
+      .item-top {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: start;
+      }
+
+      .item-top h3 {
+        margin: 0 0 6px;
+        font-size: 1.28rem;
+        color: var(--night);
+      }
+
+      .item-place {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 11px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 1px solid transparent;
+        white-space: nowrap;
+      }
+
+      .badge.confirmed {
+        background: var(--ok-bg);
+        color: var(--ok-ink);
+        border-color: rgba(23, 79, 87, 0.12);
+      }
+
+      .badge.pending {
+        background: var(--warn-bg);
+        color: var(--warn-ink);
+        border-color: rgba(123, 53, 29, 0.14);
+      }
+
+      .badge.partial {
+        background: rgba(242, 166, 90, 0.18);
+        color: #8e581f;
+        border-color: rgba(142, 88, 31, 0.14);
+      }
+
+      .item-summary {
+        margin: 0;
+        color: var(--ink);
+        line-height: 1.65;
+      }
+
+      .meta-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .meta-block {
+        padding: 14px;
+        border-radius: 16px;
+        background: rgba(19, 34, 47, 0.035);
+        border: 1px solid rgba(19, 34, 47, 0.08);
+      }
+
+      .meta-label {
+        margin-bottom: 6px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .meta-value {
+        color: var(--night);
+        font-weight: 700;
+        line-height: 1.45;
+      }
+
+      .details-list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--ink);
+        line-height: 1.65;
+      }
+
+      .details-list li + li {
+        margin-top: 6px;
+      }
+
+      .columns {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      }
+
+      .open-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .open-card {
+        padding: 18px;
+        border-radius: 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(184, 92, 56, 0.06),
+          rgba(255, 250, 240, 0.98)
+        );
+        border: 1px solid rgba(184, 92, 56, 0.14);
+      }
+
+      .open-card h3 {
+        margin: 0 0 10px;
+        color: #7b351d;
+        font-size: 1.05rem;
+      }
+
+      .open-card p {
+        margin: 0;
+        color: var(--ink);
+        line-height: 1.6;
+      }
+
+      .notes-stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .note-card {
+        padding: 18px;
+        border-radius: 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(43, 122, 120, 0.08),
+          rgba(255, 250, 240, 0.98)
+        );
+        border: 1px solid rgba(23, 79, 87, 0.14);
+      }
+
+      .note-card h3 {
+        margin: 0 0 10px;
+        color: var(--sea-deep);
+        font-size: 1rem;
+      }
+
+      .note-card p,
+      .note-card ul {
+        margin: 0;
+        color: var(--ink);
+        line-height: 1.6;
+      }
+
+      .note-card ul {
+        padding-left: 18px;
+      }
+
+      .recommendation-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      details.rec-card {
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(255, 250, 240, 0.92);
+        overflow: hidden;
+      }
+
+      details.rec-card[open] {
+        box-shadow: var(--card-shadow);
+      }
+
+      details.rec-card summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 18px 18px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      details.rec-card summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .rec-heading {
+        display: grid;
+        gap: 5px;
+      }
+
+      .rec-heading strong {
+        font-size: 1.05rem;
+        color: var(--night);
+      }
+
+      .rec-heading span {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .rec-icon {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 auto;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 999px;
+        background: rgba(19, 34, 47, 0.08);
+        color: var(--night);
+        font-weight: 800;
+        transition: transform 0.2s ease;
+      }
+
+      details.rec-card[open] .rec-icon {
+        transform: rotate(45deg);
+      }
+
+      .rec-body {
+        padding: 0 18px 18px;
+      }
+
+      .rec-body ul {
+        margin: 0;
+        padding-left: 18px;
+        line-height: 1.65;
+        color: var(--ink);
+      }
+
+      .rec-body li + li {
+        margin-top: 8px;
+      }
+
+      .doc-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 18px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        text-decoration: none;
+        background: rgba(19, 34, 47, 0.08);
+        color: var(--night);
+        font-weight: 700;
+      }
+
+      .footer {
+        margin-top: 18px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: rise 0.7s ease forwards;
+      }
+
+      .fade-in:nth-child(2) {
+        animation-delay: 0.06s;
+      }
+      .fade-in:nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      .fade-in:nth-child(4) {
+        animation-delay: 0.18s;
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .columns,
+        .stats,
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline-date {
+          position: static;
+        }
+
+        .hero {
+          padding: 24px;
+        }
+
+        .topbar {
+          top: 8px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(calc(100% - 20px), var(--max-width));
+          padding-top: 14px;
+        }
+
+        .hero h1 {
+          max-width: 10ch;
+        }
+
+        .section-card,
+        .timeline-item,
+        .stat-card {
+          padding: 16px;
+        }
+
+        .route-ribbon,
+        .topbar nav,
+        .badges {
+          gap: 8px;
+        }
+
+        .topbar a,
+        .doc-link {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+
+        .topbar {
+          display: none;
+        }
+
+        .shell {
+          width: 100%;
+          padding: 0;
+        }
+
+        .hero,
+        .section-card,
+        .stat-card {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero fade-in" id="top">
+        <div class="eyebrow">Summer 2026 trip build</div>
+        <div class="hero-grid">
+          <div>
+            <h1>Greece, Turkey, Norway.</h1>
+            <p class="hero-copy">
+              A live trip board built from the shared Google Doc. This version
+              focuses on what is already booked, preserves the notes that matter
+              on the road, and flags the pieces that still need to be locked
+              down.
+            </p>
+            <div class="route-ribbon" id="route-ribbon"></div>
+          </div>
+          <aside class="hero-panel">
+            <h2>Trip frame</h2>
+            <p><strong>Window:</strong> May 22 to June 23, 2026</p>
+            <p>
+              <strong>Flow:</strong> San Diego to Detroit to Athens to Santorini
+              to Milos to Istanbul to Cappadocia to Oslo to Voss to Bergen to
+              Bodø to Lofoten to Oslo and home.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <div class="topbar fade-in">
+        <nav>
+          <a href="#overview">Overview</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#open-items">Open Items</a>
+          <a href="#recommendations">Saved Recs</a>
+        </nav>
+      </div>
+
+      <section id="overview" class="fade-in">
+        <div class="stats" id="stats"></div>
+      </section>
+
+      <section id="timeline" class="section-card fade-in">
+        <div class="section-heading">
+          <h2>Booked Timeline</h2>
+          <p>
+            Transport, stays, and activities are laid out in date order.
+            Anything ambiguous in the doc is shown as partial or called out in
+            the open-items section instead of being guessed.
+          </p>
+        </div>
+        <div class="timeline" id="timeline-list"></div>
+      </section>
+
+      <section id="open-items" class="section-card fade-in">
+        <div class="section-heading">
+          <h2>Open Items</h2>
+          <p>
+            These are the loose ends still visible in the document: missing
+            property names, bookings that look planned but not confirmed, or
+            dates that need a quick sanity check.
+          </p>
+        </div>
+        <div class="columns">
+          <div class="open-grid" id="open-grid"></div>
+          <div class="notes-stack">
+            <div class="note-card">
+              <h3>Useful logistics already captured</h3>
+              <ul>
+                <li>
+                  Athens Free Tour is locked for Tuesday, May 26, 2026 at 12:30,
+                  with arrival 10 minutes early at the Statue of Theseus.
+                </li>
+                <li>
+                  Milos ferry is noted as 2:30 PM to 4:25 PM on May 31, followed
+                  by Avance car pickup at Milos Port and return on June 3 at
+                  Milos Airport.
+                </li>
+                <li>
+                  Oslo to Voss train is noted for June 12 at 12:03 PM from Oslo
+                  S via the VY app.
+                </li>
+                <li>
+                  Return flight on June 23 is British Airways at 7:45 AM, with a
+                  2.5 hour Heathrow layover and 2:55 PM arrival in San Diego.
+                </li>
+              </ul>
+            </div>
+            <div class="note-card">
+              <h3>How to use this page</h3>
+              <p>
+                Keep this as the clean travel-facing view, then update the
+                inline data whenever another booking lands. The source link
+                below points back to the original planning doc for anything not
+                yet distilled here.
+              </p>
+              <a
+                class="doc-link"
+                href="https://docs.google.com/document/d/10DQqmoyrhqGf45JCOHHaHT3TNGdk52grhk5drpq-Kvk/edit?usp=sharing"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open the source Google Doc
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="recommendations" class="section-card fade-in">
+        <div class="section-heading">
+          <h2>Saved Recommendations</h2>
+          <p>
+            The bottom half of the doc had useful food, sightseeing, and
+            destination notes. They are preserved here as expandable cards so
+            they stay handy without cluttering the main itinerary.
+          </p>
+        </div>
+        <div class="recommendation-list" id="recommendation-list"></div>
+      </section>
+
+      <p class="footer">
+        Built from the shared itinerary doc on April 17, 2026. Unknown details
+        stay marked as unknown on purpose.
+      </p>
+    </main>
+
+    <script>
+      const routeStops = [
+        "San Diego",
+        "Detroit",
+        "Athens",
+        "Santorini",
+        "Milos",
+        "Istanbul",
+        "Cappadocia",
+        "Oslo",
+        "Voss",
+        "Bergen",
+        "Bodø",
+        "Lofoten",
+        "Oslo",
+        "San Diego",
+      ];
+
+      const stats = [
+        {
+          label: "Trip span",
+          value: "33 days",
+          note: "May 22 to June 23, 2026 across the Mediterranean and Arctic legs.",
+        },
+        {
+          label: "Countries",
+          value: "3",
+          note: "Greece, Turkey, and Norway.",
+        },
+        {
+          label: "Booked stays",
+          value: "12",
+          note: "Hotels, Airbnbs, and lodges that are named and booked in the source doc.",
+        },
+        {
+          label: "Open loops",
+          value: "2",
+          note: "Only the Voss-to-Bergen handoff and the Bergen hotel are still open in the source doc.",
+        },
+      ];
+
+      const itinerary = [
+        {
+          date: "May 22",
+          title: "San Diego to Detroit",
+          place: "Delta flight DL0754",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Delta morning flight from San Diego to Detroit is confirmed.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "SAN to DTW"],
+            ["Time", "6:15 AM to 1:46 PM"],
+            ["Flight", "DL0754"],
+          ],
+        },
+        {
+          date: "May 22 to May 24",
+          title: "Dearborn Inn stay",
+          place: "Dearborn, Michigan",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Pre-Europe stopover stay at Dearborn Inn is confirmed.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Property", "Dearborn Inn"],
+            ["Status", "Booked"],
+          ],
+        },
+        {
+          date: "May 24",
+          title: "Detroit to Athens",
+          place: "American Airlines connection",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "American Airlines itinerary from Detroit to Athens is confirmed with a connection in Chicago.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "DTW to ORD to ATH"],
+            ["Depart", "1:03 PM"],
+            ["Arrive", "11:00 AM next day"],
+            ["Flight", "AA3498 + AA160"],
+          ],
+        },
+        {
+          date: "May 25 to May 27",
+          title: "Athens hotel",
+          place: "Athens, Greece",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Athens base is B4B Athens Signature Hotel.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Property", "B4B Athens Signature Hotel"],
+            ["Status", "Booked"],
+          ],
+        },
+        {
+          date: "May 26",
+          title: "Athens Free Tour",
+          place: "Athens historic center",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Guided Walk of the Gods including Acropolis and Parthenon views is confirmed for Tuesday.",
+          meta: [
+            ["Type", "Activity"],
+            ["Time", "12:30 PM"],
+            ["Meet", "Statue of Theseus"],
+          ],
+          details: [
+            "Arrive 10 minutes early.",
+            "Look for the guide with the white and red umbrella.",
+            "Tour name in the doc: Guided Walk of the Gods incl. views of Acropolis and Parthenon.",
+          ],
+        },
+        {
+          date: "May 27",
+          title: "Athens to Santorini",
+          place: "Aegean Airlines flight",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Aegean Airlines flight A3368 is confirmed from Athens to Santorini on Wednesday afternoon.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "ATH to JTR"],
+            ["Time", "3:05 PM to 3:55 PM"],
+            ["Flight", "A3368"],
+          ],
+          details: [
+            "Confirmation code: 99YZMN.",
+            "Departure: Athens (ATH) at 3:05 PM.",
+            "Arrival: Santorini (JTR) at 3:55 PM.",
+          ],
+        },
+        {
+          date: "May 27 to May 31",
+          title: "Orama Hotel & Spa",
+          place: "Santorini, Greece",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Santorini stay is confirmed at Orama Hotel & Spa for four nights with breakfast included.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Property", "Orama Hotel & Spa"],
+            ["Room", "Double Standard"],
+            ["Guests", "2 adults"],
+          ],
+          details: [
+            "Booking confirmation: 55101334.",
+            "Rate category: Non Refundable Rate | Breakfast.",
+            "Check-in: Wednesday, May 27, 2026.",
+            "Check-out: Sunday, May 31, 2026.",
+          ],
+        },
+        {
+          date: "May 31",
+          title: "Santorini to Milos ferry and car pickup",
+          place: "Cyclades transfer day",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Afternoon ferry and Milos car rental logistics are already captured.",
+          meta: [
+            ["Type", "Ferry + car rental"],
+            ["Ferry", "2:30 PM to 4:25 PM"],
+            ["Booked by", "Paul"],
+          ],
+          details: [
+            "Ferry is noted as Ferry Hopper.",
+            "Avance Car Rental pickup is set for May 31 at Milos Port.",
+            "Car return is set for June 3 at Milos Airport.",
+          ],
+        },
+        {
+          date: "May 31 to June 3",
+          title: "Pollonia Airbnb",
+          place: "Milos, Greece",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Airbnb stay in Pollonia, Milos is booked.",
+          meta: [
+            ["Type", "Airbnb"],
+            ["Area", "Pollonia, Milos"],
+            ["Booked by", "Paul"],
+          ],
+        },
+        {
+          date: "June 3",
+          title: "Milos to Athens to Istanbul",
+          place: "Aegean connection",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Aegean itinerary from Milos to Istanbul is confirmed via Athens and booked by Ellie.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "MLO to ATH to IST"],
+            ["Time", "10:40 AM to 2:35 PM IST"],
+            ["Flight", "A37023 + A3992"],
+            ["Booked by", "Ellie"],
+          ],
+        },
+        {
+          date: "June 3 to June 6",
+          title: "Ada Karakoy Boutique Hotel",
+          place: "Istanbul, Turkey",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Istanbul stay at Ada Karakoy Boutique Hotel is confirmed.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Property", "Ada Karakoy Boutique Hotel"],
+            ["Booked by", "Ellie"],
+          ],
+        },
+        {
+          date: "June 6",
+          title: "Istanbul to Cappadocia",
+          place: "Turkish Airlines flight",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Turkish Airlines flight to Cappadocia is booked, with rental car also noted.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "IST to NAV"],
+            ["Time", "1:45 PM to 3:05 PM"],
+            ["Booked by", "Ellie"],
+          ],
+          details: [
+            "Garenta is booked through DiscoverCars.com.",
+          ],
+        },
+        {
+          date: "June 6 to June 9",
+          title: "Traveller's Cave Hotel",
+          place: "Cappadocia, Turkey",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Cave-hotel stay is locked in for the Cappadocia leg.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Property", "Traveller's Cave Hotel"],
+            ["Status", "Booked"],
+          ],
+        },
+        {
+          date: "June 9",
+          title: "Cappadocia to Oslo via Istanbul",
+          place: "Turkish Airlines connection",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Turkish Airlines itinerary from Nevşehir to Oslo is confirmed with one connection in Istanbul.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "NAV to IST to OSL"],
+            ["Time", "10:20 AM to 5:45 PM"],
+            ["Flight", "TK2003 + TK1753"],
+            ["Fare", "Economy Class (Y) - EcoFly"],
+          ],
+          details: [
+            "Departure: Nevşehir (NAV) at 10:20 AM on Tuesday, June 9, 2026.",
+            "Arrival: Oslo (OSL) at 5:45 PM.",
+            "One connecting flight in Istanbul (IST).",
+            "Journey duration: 8 hours 25 minutes.",
+            "Cabin baggage: 1 piece x 8 kg.",
+            "Changes and refunds are not allowed, including in case of no-show.",
+          ],
+        },
+        {
+          date: "June 9 to June 12",
+          title: "Oslo Airbnb in Tøyen",
+          place: "Oslo, Norway",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "The Airbnb in Tøyen is booked by Ellie for the full Oslo stay before the Voss train.",
+          meta: [
+            ["Type", "Airbnb"],
+            ["Area", "Tøyen"],
+            ["Dates", "June 9 to June 12"],
+            ["Booked by", "Ellie"],
+          ],
+        },
+        {
+          date: "June 12",
+          title: "Oslo to Voss train",
+          place: "VY train F4 to Bergen",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "VY rail ticket is confirmed from Oslo S to Voss stasjon for Friday afternoon.",
+          meta: [
+            ["Type", "Train"],
+            ["Route", "Oslo S to Voss stasjon"],
+            ["Time", "12:03 PM to 5:51 PM"],
+            ["Train", "F4 to Bergen"],
+            ["Seat", "Car 1 - Seat 9"],
+          ],
+          details: [
+            "Reference code: XVN-OHF-SDQ.",
+            "Passenger: Paul Novacovici.",
+            "Ticket type: Adult Plus Refundable.",
+            "Departure: Oslo S at 12:03 PM on Friday, June 12, 2026.",
+            "Arrival: Voss stasjon at 5:51 PM.",
+          ],
+        },
+        {
+          date: "June 12 to June 13",
+          title: "Voss Airbnb",
+          place: "Near Voss stasjon",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "One-night Airbnb about 10 minutes by taxi from Voss stasjon is booked.",
+          meta: [
+            ["Type", "Airbnb"],
+            ["Location", "10 minutes from Voss stasjon"],
+            ["Booked by", "Ellie"],
+          ],
+          details: ["Vosstaxi.no is noted in the doc as the recommended transport."],
+        },
+        {
+          date: "June 13 to June 15",
+          title: "NordicVentures kayaking and hiking tour",
+          place: "Voss area",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Three-day sea kayaking and hiking tour is booked.",
+          meta: [
+            ["Type", "Tour"],
+            ["Operator", "NordicVentures"],
+            ["Booked by", "Paul"],
+          ],
+          details: [
+            "Packing list is still noted as a follow-up.",
+            "Pickup is in Voss.",
+          ],
+        },
+        {
+          date: "June 15",
+          title: "Voss to Bergen transfer",
+          place: "Post-tour transit",
+          status: "partial",
+          statusText: "Needs confirmation",
+          summary:
+            "The plan is a late-afternoon train from Voss to Bergen after the kayak trip, but the doc asks whether the company arranged it.",
+          meta: [
+            ["Type", "Train"],
+            ["Timing", "Late afternoon"],
+            ["Status", "Arrangement unclear"],
+          ],
+        },
+        {
+          date: "June 15 to June 17",
+          title: "Bergen stay",
+          place: "Bergen, Norway",
+          status: "pending",
+          statusText: "Need booking",
+          summary: "The itinerary calls out Bergen hotel as still needed.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Status", "Not booked yet"],
+            ["Window", "2 nights"],
+          ],
+        },
+        {
+          date: "June 17",
+          title: "Bergen to Bodø",
+          place: "Widerøe flight WF 616",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Widerøe flight from Bergen to Bodø is confirmed for Wednesday evening.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "BGO to BOO"],
+            ["Time", "5:20 PM to 7:10 PM"],
+            ["Class", "SMART (K)"],
+          ],
+          details: [
+            "Booking reference: YTIBFG.",
+            "Flight number: WF 616.",
+            "Passengers: Paul Novacovici and Ellen Pasquale.",
+            "Ticket numbers: 701-2135796116 and 701-2135796117.",
+          ],
+        },
+        {
+          date: "June 17 to June 18",
+          title: "Bodø overnight",
+          place: "Bodø, Norway",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "One-night stay at Radisson Blu Bodø is booked by Ellie.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Property", "Radisson Blu Bodø"],
+            ["Booked by", "Ellie"],
+          ],
+        },
+        {
+          date: "June 18",
+          title: "Bodø to Moskenes ferry",
+          place: "Lofoten arrival",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Paid booking is confirmed for the 12:00 PM Bodø to Moskenes ferry, with a plan to try for the 10:00 AM departure if there is space.",
+          meta: [
+            ["Type", "Ferry"],
+            ["Confirmed", "12:00 PM"],
+            ["Try earlier", "10:00 AM if space"],
+            ["Operator", "Torghatten"],
+          ],
+          details: [
+            "Confirmation code: WNQAN7D7.",
+            "Arrival: Moskenes at 3:15 PM.",
+            "A reserved seat is tied to the paid 12:00 PM booking.",
+            "If space opens on the 10:00 AM ferry, try to board that sailing instead.",
+            "If not, use the paid 12:00 PM booking.",
+          ],
+        },
+        {
+          date: "June 18 to June 22",
+          title: "Lofoten rental car",
+          place: "Moskenes pickup",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Rental car is booked with Bilutleie i Lofoten for the full Lofoten stretch.",
+          meta: [
+            ["Type", "Rental car"],
+            ["Company", "Bilutleie i Lofoten"],
+            ["Pickup", "Moskenes"],
+          ],
+          details: ["Current pickup time is set for 2:00 PM in Moskenes."],
+        },
+        {
+          date: "June 18 to June 20",
+          title: "Sakrisøy Gjestegård",
+          place: "Reine area, Lofoten",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "First Lofoten stay is Reine Manor House at Sakrisøy Gjestegård.",
+          meta: [
+            ["Type", "Lodge"],
+            ["Property", "Sakrisøy Gjestegård Reine Manor House"],
+            ["Booked by", "Ellie via Booking.com"],
+          ],
+        },
+        {
+          date: "June 20 to June 22",
+          title: "Hattvika Lodge",
+          place: "Ballstad, Lofoten",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Second Lofoten stay is Hattvika Lodge in Ballstad.",
+          meta: [
+            ["Type", "Lodge"],
+            ["Property", "Hattvika Lodge"],
+            ["Booked by", "Ellie via Booking.com"],
+          ],
+        },
+        {
+          date: "June 22",
+          title: "Moskenes to Bodø ferry",
+          place: "Return from Lofoten",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Paid return ferry is confirmed from Moskenes ferjekai to Bodø ferjekai for the afternoon crossing.",
+          meta: [
+            ["Type", "Ferry"],
+            ["Travel date", "June 22, 2026"],
+            ["Departure", "2:00 PM"],
+            ["Paid", "Yes"],
+          ],
+          details: [
+            "Route: Moskenes ferjekai to Bodø ferjekai.",
+            "Order reference: 2PAHGMHC.",
+            "Arrival: Bodø at 5:15 PM.",
+            "It is about a 10 minute walk from the ferry port to the airport.",
+          ],
+        },
+        {
+          date: "June 22",
+          title: "Bodø to Oslo",
+          place: "Norwegian flight DY355",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Norwegian evening flight from Bodø to Oslo is confirmed.",
+          meta: [
+            ["Type", "Flight"],
+            ["Route", "BOO to OSL"],
+            ["Time", "7:30 PM to 9:00 PM"],
+            ["Flight", "DY355"],
+          ],
+          details: ["Booked from Ellie's email."],
+        },
+        {
+          date: "June 22 to June 23",
+          title: "Radisson Blu Oslo Airport",
+          place: "Oslo Airport, Norway",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Airport hotel stay is booked for the night before the return home.",
+          meta: [
+            ["Type", "Hotel"],
+            ["Property", "Radisson Blu Oslo Airport"],
+            ["Booked by", "Ellie"],
+          ],
+        },
+        {
+          date: "June 23",
+          title: "Oslo to San Diego via London",
+          place: "Return flight",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "British Airways return is booked through Chase.",
+          meta: [
+            ["Type", "Flight"],
+            ["Depart", "7:45 AM OSL"],
+            ["Arrive", "2:55 PM SAN"],
+          ],
+          details: [
+            "2.5 hour layover in London Heathrow.",
+            "Booked by Paul through Chase.",
+          ],
+        },
+      ];
+
+      const openItems = [
+        {
+          title: "Bergen hotel still needed",
+          body: "June 15 to June 17 in Bergen is explicitly marked as needing a hotel booking.",
+        },
+        {
+          title: "Voss to Bergen transfer",
+          body: "The doc asks whether the train after the kayak trip is arranged by the company, so that handoff is still fuzzy.",
+        },
+      ];
+
+      const recommendations = [
+        {
+          title: "Athens",
+          subtitle: "Food, drinks, and neighborhood notes",
+          items: [
+            "Manari Taverna, followed by drinks at The Clumsies next door.",
+            "Pharaoh.",
+            "Akra, then drinks around Pagrati, including Hippy 3 and Profitis.",
+            "Brunch ideas: Me Kolonaki, Philos, or Nice n Easy.",
+          ],
+        },
+        {
+          title: "Milos",
+          subtitle: "Pollonia and Adamas food recs from Vivian's friend",
+          items: [
+            "Gialos and Armenaki in Pollonia are called out as excellent fish taverns.",
+            "Oh! Hamos in Adamas for traditional Milos cuisine.",
+            "Alevromylos between Pollonia and Adamas.",
+            "Sirocco on the beach at Paleochori for a swim-and-fish lunch.",
+            "The note specifically says Gialos is not to be missed.",
+          ],
+        },
+        {
+          title: "Istanbul",
+          subtitle: "Restaurants, food list, sightseeing, and practical tips",
+          items: [
+            "Restaurants and bars: Pandeli, Mahir, Mum's Cafe, Frankie.",
+            "Foods to look for: gozleme, pide, ayran, lentil soup, full Turkish breakfast, Turkish tea and delight, Turkish coffee, kofte, islak hamburger, fresh juices.",
+            "Things to see: Basilica Cistern, Hagia Sophia, Blue Mosque, Grand Bazaar, Spice Bazaar, Topkapi Palace, Bosphorus boat tour.",
+            "Tips: use Uber when possible, tram or walk, stay in the Galata Tower area, avoid the shoe-shining scam, do not flush toilet paper, negotiate in the bazaars, and check prayer hours before visiting sites.",
+          ],
+        },
+        {
+          title: "Cappadocia",
+          subtitle: "Food, stay style, and priority activities",
+          items: [
+            "Badem Restaurant for traditional food and rooftop views, especially the clay pot dish.",
+            "Taste of Moms for gozleme in a cave house setting.",
+            "Stay in a cave hotel.",
+            "Do: hot air balloons, Goreme Open Air Museum, Love Valley, Derinkuyu underground city, Dark Church.",
+            "Tip: front-load the balloon plan in case weather pushes it out.",
+          ],
+        },
+        {
+          title: "Greece extras",
+          subtitle: "Loose notes from the doc",
+          items: ["Hidden gems mentioned from Reddit: Naxos and Thessaloniki."],
+        },
+        {
+          title: "Norway",
+          subtitle: "Saved links and highlights",
+          items: [
+            "General Norway thread saved from Reddit.",
+            "Haukland Beach.",
+            "Festvagtinden hike via Visit Lofoten.",
+          ],
+        },
+      ];
+
+      function badgeClass(status) {
+        if (status === "confirmed") return "confirmed";
+        if (status === "pending") return "pending";
+        return "partial";
+      }
+
+      function renderRoute() {
+        const ribbon = document.getElementById("route-ribbon");
+        ribbon.innerHTML = routeStops
+          .map((stop) => `<span class="route-stop">${stop}</span>`)
+          .join("");
+      }
+
+      function renderStats() {
+        const statsRoot = document.getElementById("stats");
+        statsRoot.innerHTML = stats
+          .map(
+            (card) => `
+        <article class="stat-card">
+          <div class="stat-label">${card.label}</div>
+          <div class="stat-value">${card.value}</div>
+          <div class="stat-note">${card.note}</div>
+        </article>
+      `,
+          )
+          .join("");
+      }
+
+      function renderTimeline() {
+        const list = document.getElementById("timeline-list");
+        list.innerHTML = itinerary
+          .map(
+            (item) => `
+        <article class="timeline-item">
+          <div class="timeline-date">
+            <div class="date-chip">${item.date}</div>
+          </div>
+          <div class="timeline-main">
+            <div class="item-top">
+              <div>
+                <h3>${item.title}</h3>
+                <div class="item-place">${item.place}</div>
+              </div>
+              <div class="badges">
+                <span class="badge ${badgeClass(item.status)}">${item.statusText}</span>
+              </div>
+            </div>
+            <p class="item-summary">${item.summary}</p>
+            <div class="meta-grid">
+              ${item.meta
+                .map(
+                  ([label, value]) => `
+                <div class="meta-block">
+                  <div class="meta-label">${label}</div>
+                  <div class="meta-value">${value}</div>
+                </div>
+              `,
+                )
+                .join("")}
+            </div>
+            ${
+              item.details
+                ? `
+              <ul class="details-list">
+                ${item.details.map((detail) => `<li>${detail}</li>`).join("")}
+              </ul>
+            `
+                : ""
+            }
+          </div>
+        </article>
+      `,
+          )
+          .join("");
+      }
+
+      function renderOpenItems() {
+        const grid = document.getElementById("open-grid");
+        grid.innerHTML = openItems
+          .map(
+            (item) => `
+        <article class="open-card">
+          <h3>${item.title}</h3>
+          <p>${item.body}</p>
+        </article>
+      `,
+          )
+          .join("");
+      }
+
+      function renderRecommendations() {
+        const list = document.getElementById("recommendation-list");
+        list.innerHTML = recommendations
+          .map(
+            (section) => `
+        <details class="rec-card">
+          <summary>
+            <div class="rec-heading">
+              <strong>${section.title}</strong>
+              <span>${section.subtitle}</span>
+            </div>
+            <span class="rec-icon">+</span>
+          </summary>
+          <div class="rec-body">
+            <ul>
+              ${section.items.map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+          </div>
+        </details>
+      `,
+          )
+          .join("");
+      }
+
+      renderRoute();
+      renderStats();
+      renderTimeline();
+      renderOpenItems();
+      renderRecommendations();
+    </script>
+  </body>
+</html>

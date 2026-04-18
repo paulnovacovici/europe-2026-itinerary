@@ -209,12 +209,32 @@
       }
 
       .route-stop {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         padding: 8px 12px;
         border-radius: 999px;
         background: rgba(255, 248, 239, 0.1);
         border: 1px solid rgba(255, 248, 239, 0.16);
         font-size: 0.9rem;
         color: rgba(255, 248, 239, 0.92);
+        text-decoration: none;
+      }
+
+      .route-stop-link {
+        cursor: pointer;
+        transition:
+          transform 0.16s ease,
+          background 0.16s ease,
+          border-color 0.16s ease;
+      }
+
+      .route-stop-link:hover,
+      .route-stop-link:focus-visible {
+        transform: translateY(-1px);
+        background: rgba(255, 248, 239, 0.16);
+        border-color: rgba(242, 166, 90, 0.38);
+        outline: none;
       }
 
       .topbar {
@@ -891,20 +911,20 @@
 
     <script>
       const routeStops = [
-        "San Diego",
-        "Detroit",
-        "Athens",
-        "Santorini",
-        "Milos",
-        "Istanbul",
-        "Cappadocia",
-        "Oslo",
-        "Voss",
-        "Bergen",
-        "Bodø",
-        "Lofoten",
-        "Oslo",
-        "San Diego",
+        { label: "San Diego", targetId: "stop-san-diego-start" },
+        { label: "Detroit", targetId: "stop-detroit" },
+        { label: "Athens", targetId: "stop-athens" },
+        { label: "Santorini", targetId: "stop-santorini" },
+        { label: "Milos", targetId: "stop-milos" },
+        { label: "Istanbul", targetId: "stop-istanbul" },
+        { label: "Cappadocia", targetId: "stop-cappadocia" },
+        { label: "Oslo", targetId: "stop-oslo-arrival" },
+        { label: "Voss", targetId: "stop-voss" },
+        { label: "Bergen", targetId: "stop-bergen" },
+        { label: "Bodø", targetId: "stop-bodo" },
+        { label: "Lofoten", targetId: "stop-lofoten" },
+        { label: "Oslo", targetId: "stop-oslo-return" },
+        { label: "San Diego", targetId: "stop-san-diego-return" },
       ];
 
       const stats = [
@@ -934,6 +954,7 @@
         {
           date: "May 22",
           title: "San Diego to Detroit",
+          anchorId: "stop-san-diego-start",
           place: "Delta flight DL0754",
           status: "confirmed",
           statusText: "Booked",
@@ -948,6 +969,7 @@
         {
           date: "May 22 to May 24",
           title: "Dearborn Inn stay",
+          anchorId: "stop-detroit",
           place: "Dearborn, Michigan",
           status: "confirmed",
           statusText: "Booked",
@@ -977,6 +999,7 @@
         {
           date: "May 25 to May 27",
           title: "Athens hotel",
+          anchorId: "stop-athens",
           place: "Athens, Greece",
           status: "confirmed",
           statusText: "Booked",
@@ -1009,6 +1032,7 @@
         {
           date: "May 27",
           title: "Athens to Santorini",
+          anchorId: "stop-santorini",
           place: "Aegean Airlines flight",
           status: "confirmed",
           statusText: "Booked",
@@ -1050,6 +1074,7 @@
         {
           date: "May 31",
           title: "Santorini to Milos ferry and car pickup",
+          anchorId: "stop-milos",
           place: "Cyclades transfer day",
           status: "confirmed",
           statusText: "Booked",
@@ -1082,6 +1107,7 @@
         {
           date: "June 3",
           title: "Milos to Athens to Istanbul",
+          anchorId: "stop-istanbul",
           place: "Aegean connection",
           status: "confirmed",
           statusText: "Booked",
@@ -1111,6 +1137,7 @@
         {
           date: "June 6",
           title: "Istanbul to Cappadocia",
+          anchorId: "stop-cappadocia",
           place: "Turkish Airlines flight",
           status: "confirmed",
           statusText: "Booked",
@@ -1185,6 +1212,7 @@
         {
           date: "June 9 to June 12",
           title: "Oslo Airbnb in Tøyen",
+          anchorId: "stop-oslo-arrival",
           place: "Oslo, Norway",
           status: "confirmed",
           statusText: "Booked",
@@ -1200,6 +1228,7 @@
         {
           date: "June 12",
           title: "Oslo to Voss train",
+          anchorId: "stop-voss",
           place: "VY train F4 to Bergen",
           status: "confirmed",
           statusText: "Booked",
@@ -1269,6 +1298,7 @@
         {
           date: "June 15 to June 17",
           title: "Bergen stay",
+          anchorId: "stop-bergen",
           place: "Bergen, Norway",
           status: "pending",
           statusText: "Need booking",
@@ -1303,6 +1333,7 @@
         {
           date: "June 17 to June 18",
           title: "Bodø overnight",
+          anchorId: "stop-bodo",
           place: "Bodø, Norway",
           status: "confirmed",
           statusText: "Booked",
@@ -1316,6 +1347,7 @@
         {
           date: "June 18",
           title: "Bodø to Moskenes ferry",
+          anchorId: "stop-lofoten",
           place: "Lofoten arrival",
           status: "confirmed",
           statusText: "Booked",
@@ -1417,6 +1449,7 @@
         {
           date: "June 22 to June 23",
           title: "Radisson Blu Oslo Airport",
+          anchorId: "stop-oslo-return",
           place: "Oslo Airport, Norway",
           status: "confirmed",
           statusText: "Booked",
@@ -1430,6 +1463,7 @@
         {
           date: "June 23",
           title: "Oslo to San Diego via London",
+          anchorId: "stop-san-diego-return",
           place: "Return flight",
           status: "confirmed",
           statusText: "Booked",
@@ -1525,7 +1559,17 @@
       function renderRoute() {
         const ribbon = document.getElementById("route-ribbon");
         ribbon.innerHTML = routeStops
-          .map((stop) => `<span class="route-stop">${stop}</span>`)
+          .map(
+            (stop) => `
+        <a
+          class="route-stop route-stop-link"
+          href="#${stop.targetId}"
+          data-scroll-target="${stop.targetId}"
+        >
+          ${stop.label}
+        </a>
+      `,
+          )
           .join("");
       }
 
@@ -1549,7 +1593,7 @@
         list.innerHTML = itinerary
           .map(
             (item) => `
-        <article class="timeline-item">
+        <article class="timeline-item"${item.anchorId ? ` id="${item.anchorId}"` : ""}>
           <div class="timeline-date">
             <div class="date-chip">${item.date}</div>
           </div>
@@ -1635,6 +1679,28 @@
       renderTimeline();
       renderOpenItems();
       renderRecommendations();
+
+      function scrollToTarget(targetId) {
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        const topbar = document.querySelector(".topbar");
+        const topOffset = topbar ? topbar.offsetHeight + 28 : 28;
+        const targetTop =
+          target.getBoundingClientRect().top + window.scrollY - topOffset;
+
+        window.scrollTo({
+          top: targetTop,
+          behavior: "smooth",
+        });
+      }
+
+      document.querySelectorAll("[data-scroll-target]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          scrollToTarget(link.getAttribute("data-scroll-target"));
+        });
+      });
     </script>
   </body>
 </html>

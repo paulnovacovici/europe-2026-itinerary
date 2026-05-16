@@ -862,7 +862,8 @@
                 </li>
                 <li>
                   Oslo to Voss train is noted for June 12 at 12:03 PM from Oslo
-                  S via the VY app.
+                  S via the VY app; the Voss to Bergen R40 train is now booked
+                  for June 15 at 7:14 PM.
                 </li>
                 <li>
                   Return flight on June 23 is British Airways at 7:45 AM, with a
@@ -904,8 +905,8 @@
       </section>
 
       <p class="footer">
-        Built from the shared itinerary doc on April 17, 2026. Unknown details
-        stay marked as unknown on purpose.
+        Updated from the shared itinerary doc and VY ticket on May 16, 2026.
+        Unknown details stay marked as unknown on purpose.
       </p>
     </main>
 
@@ -940,13 +941,13 @@
         },
         {
           label: "Booked stays",
-          value: "12",
+          value: "13",
           note: "Hotels, Airbnbs, and lodges that are named and booked in the source doc.",
         },
         {
           label: "Open loops",
-          value: "2",
-          note: "Only the Voss-to-Bergen handoff and the Bergen hotel are still open in the source doc.",
+          value: "1",
+          note: "Only the NordicVentures packing list remains open in the source doc.",
         },
       ];
 
@@ -1011,6 +1012,20 @@
           ],
         },
         {
+          date: "May 25",
+          title: "Manari Taverna dinner",
+          place: "Athens, Greece",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Dinner reservation at Manari Taverna is booked for Monday night.",
+          meta: [
+            ["Type", "Dinner reservation"],
+            ["Restaurant", "Manari Taverna"],
+            ["Time", "8:45 PM"],
+          ],
+        },
+        {
           date: "May 26",
           title: "Athens Free Tour",
           place: "Athens historic center",
@@ -1027,6 +1042,19 @@
             "Arrive 10 minutes early.",
             "Look for the guide with the white and red umbrella.",
             "Tour name in the doc: Guided Walk of the Gods incl. views of Acropolis and Parthenon.",
+          ],
+        },
+        {
+          date: "May 26",
+          title: "Akra dinner",
+          place: "Pagrati, Athens",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Dinner reservation at Akra is booked for Tuesday night.",
+          meta: [
+            ["Type", "Dinner reservation"],
+            ["Restaurant", "Akra"],
+            ["Time", "9:30 PM"],
           ],
         },
         {
@@ -1102,6 +1130,20 @@
             ["Type", "Airbnb"],
             ["Area", "Pollonia, Milos"],
             ["Booked by", "Paul"],
+          ],
+        },
+        {
+          date: "June 1",
+          title: "Yialos dinner in Pollonia",
+          place: "Pollonia, Milos",
+          status: "confirmed",
+          statusText: "Booked",
+          summary:
+            "Dinner reservation at Yialos in Pollonia is booked for Monday night.",
+          meta: [
+            ["Type", "Dinner reservation"],
+            ["Restaurant", "Yialos"],
+            ["Time", "9:00 PM"],
           ],
         },
         {
@@ -1283,29 +1325,38 @@
         },
         {
           date: "June 15",
-          title: "Voss to Bergen transfer",
-          place: "Post-tour transit",
-          status: "partial",
-          statusText: "Needs confirmation",
+          title: "Voss to Bergen train",
+          place: "VY train R40 to Bergen",
+          status: "confirmed",
+          statusText: "Booked",
           summary:
-            "The plan is a late-afternoon train from Voss to Bergen after the kayak trip, but the doc asks whether the company arranged it.",
+            "VY rail ticket is confirmed from Voss stasjon to Bergen stasjon for Monday evening after the kayak trip.",
           meta: [
             ["Type", "Train"],
-            ["Timing", "Late afternoon"],
-            ["Status", "Arrangement unclear"],
+            ["Route", "Voss stasjon to Bergen stasjon"],
+            ["Time", "7:14 PM to 8:38 PM"],
+            ["Train", "R40 to Bergen"],
+            ["Seat", "Free seating"],
+          ],
+          details: [
+            "Reference code: RHM-V6O-RIJ.",
+            "Passenger: Paul Novacovici.",
+            "Ticket type: Adult single ticket.",
+            "Departure: Voss stasjon at 7:14 PM on Monday, June 15, 2026.",
+            "Arrival: Bergen stasjon at 8:38 PM.",
           ],
         },
         {
           date: "June 15 to June 17",
-          title: "Bergen stay",
+          title: "Bergen Airbnb",
           anchorId: "stop-bergen",
           place: "Bergen, Norway",
-          status: "pending",
-          statusText: "Need booking",
-          summary: "The itinerary calls out Bergen hotel as still needed.",
+          status: "confirmed",
+          statusText: "Booked",
+          summary: "Bergen Airbnb is booked by Wes for the two-night stay.",
           meta: [
-            ["Type", "Hotel"],
-            ["Status", "Not booked yet"],
+            ["Type", "Airbnb"],
+            ["Booked by", "Wes"],
             ["Window", "2 nights"],
           ],
         },
@@ -1482,12 +1533,8 @@
 
       const openItems = [
         {
-          title: "Bergen hotel still needed",
-          body: "June 15 to June 17 in Bergen is explicitly marked as needing a hotel booking.",
-        },
-        {
-          title: "Voss to Bergen transfer",
-          body: "The doc asks whether the train after the kayak trip is arranged by the company, so that handoff is still fuzzy.",
+          title: "NordicVentures packing list",
+          body: "The kayak and hiking tour still has a packing-list follow-up noted in the source doc.",
         },
       ];
 
